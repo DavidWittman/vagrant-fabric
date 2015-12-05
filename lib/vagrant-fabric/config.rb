@@ -5,6 +5,7 @@ module VagrantPlugins
     class Config < Vagrant.plugin("2", :config)
       attr_accessor :fabfile_path
       attr_accessor :fabric_path
+      attr_accessor :fabric_options
       attr_accessor :python_path
       attr_accessor :tasks
       attr_accessor :remote
@@ -15,6 +16,7 @@ module VagrantPlugins
       def initialize
         @fabfile_path = UNSET_VALUE
         @fabric_path = UNSET_VALUE
+        @fabric_options = UNSET_VALUE
         @python_path = UNSET_VALUE
         @tasks = UNSET_VALUE
         @remote = UNSET_VALUE
@@ -26,6 +28,7 @@ module VagrantPlugins
       def finalize!
         @fabfile_path = "fabfile.py" if @fabfile_path == UNSET_VALUE
         @fabric_path = "fab" if @fabric_path == UNSET_VALUE
+        @fabric_options = "" if @fabric_options == UNSET_VALUE
         @python_path = "python" if @python_path == UNSET_VALUE
         @tasks = [] if @tasks == UNSET_VALUE
         @remote = false if @remote == UNSET_VALUE

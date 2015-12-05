@@ -15,7 +15,7 @@ module VagrantPlugins
         if config.remote == false
           system "#{config.fabric_path} -f #{config.fabfile_path} " +
                 "-i #{private_key} --user=#{user} --hosts=#{host} " +
-                "--port=#{port} #{config.tasks.join(' ')}"
+                "--port=#{port} #{config.fabric_options} #{config.tasks.join(' ')}"
         else
           if config.install
             @machine.communicate.sudo("pip install fabric")
